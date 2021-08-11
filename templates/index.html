@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hifz Tracker</title>
+    
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <link rel="stylesheet" href="/static/style.css">
+    
+</head>
+<body>
+    <div class="screen">
+        <nav>
+            <div class="welcome navBox">
+                <span>Welcome {{ user.name }}.</span>
+            </div>
+            <div class="date navBox">
+                <span id="date"></span>
+            </div>
+        </nav>
+
+        <div class="content">            
+            <ul class="sideMenu">
+                <li>
+                    <a href="#">Hifz Tracker</a> 
+                </li>
+                <li>
+                    <a href="#">Revision Planner</a> 
+                </li>
+                <li>
+                    <a href="/logout">Logout</a> 
+                </li>
+            </ul>
+
+            <div class="quote">
+                <h1>{{ quote }}</h1>
+            </div>
+
+            <progress id="linesCompleted" class="progressBar" value="5000" max="6236" data-value="5000 ayahs/6000"></progress>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var dateContainer = document.getElementById('date')
+            var date = new Intl.DateTimeFormat('en-FR-u-ca-islamic', {day: 'numeric', month: 'long', weekday: 'long', year: 'numeric'}).format(new Date)
+
+            date = date.split(' ')
+
+            dateContainer.innerText = `${date[2].slice(0, -1)}th ${date[1]} ${date[3]}`
+        })
+    </script>
+
+</body>
+</html>

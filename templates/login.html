@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hifz Tracker</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    
+</head>
+<body>        
+    <div class="screen">
+        <div class="container">
+            <h1>Login to Hifz tracker</h1>
+
+            <form action="/login" method="POST" class="loginForm" name="loginForm" onsubmit="hashPassword()">
+                <input type="text" name="username" id="username" class="formItem textInput" placeholder="Username">
+                <input type="password" name="password" id="password" class="formItem textInput" placeholder="Password">
+
+                <input type="submit" value="Login" class="formItem submitButton">
+            </form>
+
+            <div>
+                <a href="/register">Don't have an account? Register here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/bower_components/js-sha256/build/sha256.min.js"></script>
+
+    <script>
+        function hashPassword(){
+            var hash = sha256(document.loginForm.password.value)
+            document.loginForm.password.value = hash
+        }
+    </script>
+
+</body>
+</html>
